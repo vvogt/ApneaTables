@@ -41,7 +41,6 @@ export default function App() {
         >
           {generatePickerItems(20)}
         </Picker>
-        <Text>min</Text>
         <Picker
           selectedValue={seconds}
           style={{ height: 50, width: 100 }}
@@ -49,7 +48,6 @@ export default function App() {
         >
           {generatePickerItems(59)}
         </Picker>
-        <Text>s</Text>
       </View>
     </View>
   );
@@ -65,7 +63,6 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   }
 });

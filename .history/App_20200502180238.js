@@ -36,7 +36,7 @@ export default function App() {
       <View style={styles.timeContainer}>
         <Picker
           selectedValue={minutes}
-          style={{ height: 50, width: 100 }}
+          style={{ height: 50, width: 100, justifyContent: 'flex-end', backgroundColor: '#00000' }}
           onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
         >
           {generatePickerItems(20)}

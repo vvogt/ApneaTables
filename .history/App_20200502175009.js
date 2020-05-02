@@ -4,8 +4,7 @@ import { Picker } from '@react-native-community/picker';
 import { useState } from 'react';
 
 export default function App() {
-  const [minutes, setMinutes] = useState("1");
-  const [seconds, setSeconds] = useState("0");
+  const [minutes, setMinutes] = useState("3");
 /* 
   const valuesArray = []
   for (let i = 0; i < 20; i++) {
@@ -31,41 +30,35 @@ export default function App() {
   }
   
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.container}>
       <Text>Enter your current maximum breathhold time:</Text>
-      <View style={styles.timeContainer}>
-        <Picker
-          selectedValue={minutes}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
-        >
-          {generatePickerItems(20)}
-        </Picker>
-        <Text>min</Text>
-        <Picker
-          selectedValue={seconds}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
-        >
-          {generatePickerItems(59)}
-        </Picker>
-        <Text>s</Text>
-      </View>
+      <Picker
+        selectedValue={minutes}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) =>
+          setMinutes(itemValue)
+        }
+      >
+      {generatePickerItems(20)}
+      </Picker>
+      <Picker
+        selectedValue={minutes}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) =>
+          setMinutes(itemValue)
+        }
+      >
+      {generatePickerItems(59)}
+      </Picker>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height: "100%"
   },
-  timeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 });

@@ -49,7 +49,6 @@ export default function App() {
         >
           {generatePickerItems(59)}
         </Picker>
-        <Text>s</Text>
       </View>
     </View>
   );
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   },
   timeContainer: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   }
 });

@@ -31,41 +31,35 @@ export default function App() {
   }
   
   return (
-    <View style={styles.mainContainer}>
+    <View style={styles.container}>
       <Text>Enter your current maximum breathhold time:</Text>
-      <View style={styles.timeContainer}>
-        <Picker
-          selectedValue={minutes}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
-        >
-          {generatePickerItems(20)}
-        </Picker>
-        <Text>min</Text>
-        <Picker
-          selectedValue={seconds}
-          style={{ height: 50, width: 100 }}
-          onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
-        >
-          {generatePickerItems(59)}
-        </Picker>
-        <Text>s</Text>
-      </View>
+      <Picker
+        selectedValue={minutes}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) =>
+          setMinutes(itemValue)
+        }
+      >
+      {generatePickerItems(20)}
+      </Picker>
+      <Picker
+        selectedValue={minutes}
+        style={{ height: 50, width: 100 }}
+        onValueChange={(itemValue, itemIndex) =>
+          setMinutes(itemValue)
+        }
+      >
+      {generatePickerItems(59)}
+      </Picker>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    height: "100%"
   },
-  timeContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
 });

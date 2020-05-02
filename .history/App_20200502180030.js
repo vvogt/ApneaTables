@@ -36,7 +36,7 @@ export default function App() {
       <View style={styles.timeContainer}>
         <Picker
           selectedValue={minutes}
-          style={{ height: 50, width: 100 }}
+          style={{ height: 50, width: 60 }}
           onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
         >
           {generatePickerItems(20)}
@@ -44,7 +44,7 @@ export default function App() {
         <Text>min</Text>
         <Picker
           selectedValue={seconds}
-          style={{ height: 50, width: 100 }}
+          style={{ height: 50, width: 60 }}
           onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
         >
           {generatePickerItems(59)}
