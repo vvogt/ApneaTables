@@ -38,7 +38,7 @@ export default function App() {
     const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
     const holdTime = Math.round(maxTime / 2);
     const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
+    const holdSecs = secToMin(holdTime)[1];
     let breatheTime = 150;
     let breatheTimeArray = [];
 
@@ -50,7 +50,8 @@ export default function App() {
 
     return breatheTimeArray.map((time, index) => {
       let breatheMins = secToMin(time)[0];
-      let breatheSecs = addZero(secToMin(time)[1]);
+      let breatheSecs = secToMin(time)[1];
+      breatheSecs = addZero(breatheSecs);
 
       return (
         <Text key={index}>
@@ -63,7 +64,7 @@ export default function App() {
   
   return (
     <View style={styles.mainContainer}>
-      <Text>Enter your current maximum breathhold time:</Text>
+      <Text>Enter your current maximum breathhold tsime:</Text>
       <View style={styles.timeContainer}>
         <Picker
           selectedValue={minutes}

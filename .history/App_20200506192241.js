@@ -21,45 +21,20 @@ export default function App() {
     return pickerItemsArray;
   }
 
-  const addZero = (num) => {
-    let newNum = num < 10 ? '0' + num : num;
-    return newNum;
-    console.log(newNum);
-  };
-
   const secToMin = (secondsIn) => {
-    const min = Math.floor(secondsIn / 60);
-    const sec = secondsIn - min * 60;
+    const min = Math.floor(secondsIn/60);
+    const sec = secondsIn - min*60;
     const minSec = [min, sec];
     return minSec;
-  };
+  }
 
   const generateTable = () => {
-    const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-    const holdTime = Math.round(maxTime / 2);
-    const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
+    const maxTime = parseInt(minutes)*60+parseInt(seconds);
+    const holdTime = Math.round(maxTime/2);
     let breatheTime = 150;
-    let breatheTimeArray = [];
-
-    for (let i = 0; i < 8; i++) {
-      breatheTimeArray.push(breatheTime - 15 * i);
-    }
-
-    console.log('alustan');
-
-    return breatheTimeArray.map((time, index) => {
-      let breatheMins = secToMin(time)[0];
-      let breatheSecs = addZero(secToMin(time)[1]);
-
-      return (
-        <Text key={index}>
-          Breathe: {breatheMins}.{breatheSecs} | Hold: {holdMins}.{holdSecs}
-        </Text>
-      );
-    });
-  };
-  
+    return <Text>Breathe: {breatheTime} | Hold: {holdTime}</Text>
+    console.log(holdTime);
+  }
   
   return (
     <View style={styles.mainContainer}>
@@ -103,7 +78,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   tableContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
+    flexDirection: 'column'
   }
 });

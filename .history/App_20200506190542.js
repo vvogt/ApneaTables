@@ -7,7 +7,7 @@ export default function App() {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
-  const generatePickerItems = (maxValue) => {
+  function generatePickerItems(maxValue) {
     let valuesArray = [];
     
     for (let i = 0; i < maxValue+1; i++) {
@@ -21,45 +21,10 @@ export default function App() {
     return pickerItemsArray;
   }
 
-  const addZero = (num) => {
-    let newNum = num < 10 ? '0' + num : num;
-    return newNum;
-    console.log(newNum);
-  };
-
-  const secToMin = (secondsIn) => {
-    const min = Math.floor(secondsIn / 60);
-    const sec = secondsIn - min * 60;
-    const minSec = [min, sec];
-    return minSec;
-  };
-
-  const generateTable = () => {
-    const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-    const holdTime = Math.round(maxTime / 2);
-    const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
-    let breatheTime = 150;
-    let breatheTimeArray = [];
-
-    for (let i = 0; i < 8; i++) {
-      breatheTimeArray.push(breatheTime - 15 * i);
-    }
-
-    console.log('alustan');
-
-    return breatheTimeArray.map((time, index) => {
-      let breatheMins = secToMin(time)[0];
-      let breatheSecs = addZero(secToMin(time)[1]);
-
-      return (
-        <Text key={index}>
-          Breathe: {breatheMins}.{breatheSecs} | Hold: {holdMins}.{holdSecs}
-        </Text>
-      );
-    });
-  };
-  
+  const generateTable = (min, sec) => {
+    //const maxTime = parseInt(min)*60+parseInt(sec);
+    console.log(minutes);
+  }
   
   return (
     <View style={styles.mainContainer}>
@@ -81,9 +46,7 @@ export default function App() {
           {generatePickerItems(59)}
         </Picker>
         <Text>s</Text>
-      </View>
-      <View style={styles.tableContainer}>
-        {generateTable()}
+        <Text>{generateTable()}</Text>
       </View>
     </View>
   );
@@ -101,9 +64,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  tableContainer: {
-    flexDirection: 'column',
-    alignItems: 'center',
   }
 });
