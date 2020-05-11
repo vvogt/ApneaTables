@@ -39,51 +39,43 @@ export default function Main() {
    };
 
    const generateBreatheTable = () => {
-    let breatheTimeConst = 150;
-     let breatheTimeArray = [];
+      let breatheTimeConst = 150;
+      let breatheTimeArray = [];
 
-     console.log('wwaaaat');
+      for (let i = 0; i < 8; i++) {
+         breatheTimeArray.push(breatheTimeConst - 15 * i);
+      }
 
-     for (let i = 0; i < 8; i++) {
-       breatheTimeArray.push(breatheTimeConst - 15 * i);
-     }
+      return breatheTimeArray.map((time, index) => {
+         let breatheMins = secToMin(time)[0];
+         let breatheSecs = addZero(secToMin(time)[1]);
 
-     return breatheTimeArray.map((time, index) => {
-       let breatheMins = secToMin(time)[0];
-       let breatheSecs = addZero(secToMin(time)[1]);
-
-       return (
-         <Text key={index}>
-           {breatheMins}.{breatheSecs}
-         </Text>
-       );
-     });
+         return (
+            <Text key={index}>
+               {breatheMins}.{breatheSecs}
+            </Text>
+         );
+      });
    };
 
    
-  const generateHoldTable = () => {
-    const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-    const holdTime = Math.round(maxTime / 2);
-    const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
-    let holdTimeConst = 150;
-    let holdTimeArray = [];
+   const generateHoldTable = () => {
+      const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
+      const holdTime = Math.round(maxTime / 2);
+      const holdMins = secToMin(holdTime)[0];
+      const holdSecs = addZero(secToMin(holdTime)[1]);
+      const holdTimeArray = [];
 
-    for (let i = 0; i < 8; i++) {
-      holdTimeArray.push(holdTimeConst - 15 * i);
-    }
+      for (let i = 0; i < 8; i++) {
+         holdTimeArray.push(
+            <Text key={i}>
+               {holdMins}.{holdSecs}
+            </Text>
+         );
+      }
 
-    console.log('alustan');
-
-    return holdTimeArray.map((time, index) => {
-
-      return (
-        <Text key={index}>
-          {holdMins}.{holdSecs}
-        </Text>
-      );
-    });
-  };
+      return holdTimeArray;
+   };
 
    return (
      <View style={styles.mainContainer}>
