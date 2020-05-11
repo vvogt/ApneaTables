@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { useState } from 'react';
-import { styles } from './styles.js';
+import { styles } from '../styles.js';
 
 export default function Main() {
    const [minutes, setMinutes] = useState('1');
@@ -45,8 +45,6 @@ export default function Main() {
      const holdSecs = addZero(secToMin(holdTime)[1]);
      let breatheTime = 150;
      let breatheTimeArray = [];
-
-     console.log('wwaaaat');
 
      for (let i = 0; i < 8; i++) {
        breatheTimeArray.push(breatheTime - 15 * i);
