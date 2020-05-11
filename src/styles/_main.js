@@ -57,16 +57,6 @@ const styles = StyleSheet.create({
     paddingBottom: 4
   },
 
-  bottomBar: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingBottom: 20,
-    paddingTop: 20,
-    borderTopWidth: 1,
-    borderColor: '#20232a',
-  },
-
   startButton: {
     paddingTop: 20,
     paddingBottom: 20,
@@ -81,6 +71,8 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#ffffff',
   },
+
+  
 
   tableHeader: {
     marginBottom: 20,

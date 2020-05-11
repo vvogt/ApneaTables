@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View, Button, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { useState } from 'react';
-import { styles } from './styles.js';
+import { styles } from './styles/_main.js';
+import { BottomTabs } from './components/bottomTabs';
 
 export default function Main() {
    const [minutes, setMinutes] = useState('1');
@@ -120,11 +121,8 @@ export default function Main() {
                <Text style={styles.buttonText}>START</Text>
             </TouchableOpacity>
          </View>
+         <BottomTabs/>
 
-         <View style={styles.bottomBar}>
-           <Text>O2</Text>
-           <Text>CO2</Text>
-         </View>
      </View>
-   );
+   )
 }
