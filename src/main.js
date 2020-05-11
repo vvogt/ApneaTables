@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View, Button, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { useState } from 'react';
 import { styles } from './styles.js';
@@ -51,8 +51,8 @@ export default function Main() {
          let breatheSecs = addZero(secToMin(time)[1]);
 
          return (
-            <Text key={index}>
-               {breatheMins}.{breatheSecs}
+            <Text key={index} style={styles.tableText}>
+               {breatheMins}:{breatheSecs}
             </Text>
          );
       });
@@ -66,11 +66,13 @@ export default function Main() {
       const holdSecs = addZero(secToMin(holdTime)[1]);
       const holdTimeArray = [];
 
+      console.log('check');
+
       for (let i = 0; i < 8; i++) {
          holdTimeArray.push(
-            <Text key={i}>
-               {holdMins}.{holdSecs}
-            </Text>
+           <Text key={i} style={styles.tableText}>
+             {holdMins}:{holdSecs}
+           </Text>
          );
       }
 
@@ -78,44 +80,51 @@ export default function Main() {
    };
 
    return (
-     <View style={styles.mainContainer}>
-       <Text>Enter your current maximum breathhold time:</Text>
-       <View style={styles.timeContainer}>
-         <Picker
-           selectedValue={minutes}
-           style={{ height: 50, width: 100 }}
-           onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
-         >
-           {generatePickerItems(20)}
-         </Picker>
-         <Text>min</Text>
-         <Picker
-           selectedValue={seconds}
-           style={{ height: 50, width: 100 }}
-           onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
-         >
-           {generatePickerItems(59)}
-         </Picker>
-         <Text>s</Text>
-       </View>
-       <View style={styles.tableContainer}>
-         
-       <View style={styles.tableLeft}>
-        <Text>Breathe</Text>
-        {generateBreatheTable()}
-      </View>
-      <View style={styles.tableRight}>
-        <Text>Hold</Text>
-        {generateHoldTable()}
-      </View>
-      <View>
-        <Text>Start</Text>
-      </View>
-      <View style={styles.bottomBar}>
-        <Text>O2</Text>
-        <Text>CO2</Text>
-      </View>
-     </View>
+      <View style={styles.mainContainer}>
+
+         <View style={styles.topContainer}>
+            <Text styles={styles.topText}>Enter your current maximum breathhold time:</Text>
+            <View style={styles.timeContainer}>
+              <Picker
+                selectedValue={minutes}
+                style={{ height: 50, width: 100 }}
+                onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
+              >
+                {generatePickerItems(20)}
+              </Picker>
+              <Text>min</Text>
+              <Picker
+                selectedValue={seconds}
+                style={{ height: 50, width: 100 }}
+                onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
+              >
+                {generatePickerItems(59)}
+              </Picker>
+              <Text>s</Text>
+            </View>
+         </View>
+
+         <View style={styles.bottomContainer}>
+            <View style={styles.tableContainer}>
+               <View style={styles.tableLeft}>
+                  <Text style={styles.tableHeader}>Breathe</Text>
+                  {generateBreatheTable()}
+               </View>
+               <View style={styles.tableRight}>
+                  <Text style={styles.tableHeader}>Hold</Text>
+                  {generateHoldTable()}
+               </View>
+            </View>
+
+            <TouchableOpacity style={styles.startButton}>
+               <Text style={styles.buttonText}>START</Text>
+            </TouchableOpacity>
+         </View>
+
+         <View style={styles.bottomBar}>
+           <Text>O2</Text>
+           <Text>CO2</Text>
+         </View>
      </View>
    );
 }

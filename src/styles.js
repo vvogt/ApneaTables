@@ -5,30 +5,87 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     height: '100%',
+    paddingTop: 40,
   },
+
+  topContainer: {
+      width: '100%',
+      height: '25%',
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+
+  bottomContainer: {
+     justifyContent: 'space-between',
+     alignItems: 'center',
+     width: '100%',
+     flex: 1
+  },
+
+   topText: {
+      fontWeight: 'bold',
+   },
+
   timeContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   tableContainer: {
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    flex: 1
   },
-  tableLeft:{
+
+  tableLeft: {
     flexDirection: 'column',
-    justifyContent: 'flex-start'
+    textAlign: 'center',
+    marginRight: 50,
   },
-  tableRight:{
+
+  tableRight: {
     flexDirection: 'column',
-    justifyContent: 'flex-end'
   },
+
+  tableText: {
+    textAlign: 'center',
+    paddingBottom: 4
+  },
+
   bottomBar: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  }
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderColor: '#20232a',
+  },
+
+  startButton: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    width: '70%',
+    alignItems: 'center',
+    backgroundColor: '#00B2FF',
+    borderRadius: 100,
+    marginBottom: 50,
+    marginTop: 50
+  },
+
+  buttonText: {
+    color: '#ffffff',
+  },
+
+  tableHeader: {
+    marginBottom: 20,
+    fontWeight: 'bold',
+  },
 });
 
 export { styles };
