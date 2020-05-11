@@ -46,8 +46,6 @@ export default function Main() {
      let breatheTime = 150;
      let breatheTimeArray = [];
 
-     console.log('wwaaaat');
-
      for (let i = 0; i < 8; i++) {
        breatheTimeArray.push(breatheTime - 15 * i);
      }

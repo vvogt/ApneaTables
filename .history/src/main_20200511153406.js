@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 import { useState } from 'react';
-import { styles } from './styles.js';
 
 export default function Main() {
    const [minutes, setMinutes] = useState('1');
@@ -46,8 +45,6 @@ export default function Main() {
      let breatheTime = 150;
      let breatheTimeArray = [];
 
-     console.log('wwaaaat');
-
      for (let i = 0; i < 8; i++) {
        breatheTimeArray.push(breatheTime - 15 * i);
      }
@@ -89,3 +86,22 @@ export default function Main() {
      </View>
    );
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+  },
+  timeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tableContainer: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+});
