@@ -17,6 +17,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  tableLeft:{
+    flexDirection: 'column',
+    justifyContent: 'flex-start'
+  },
+  tableRight:{
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
+  bottomBar: {
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  }
 });
 
 export { styles };

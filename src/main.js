@@ -38,18 +38,14 @@ export default function Main() {
      return minSec;
    };
 
-   const generateTable = () => {
-     const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-     const holdTime = Math.round(maxTime / 2);
-     const holdMins = secToMin(holdTime)[0];
-     const holdSecs = addZero(secToMin(holdTime)[1]);
-     let breatheTime = 150;
+   const generateBreatheTable = () => {
+    let breatheTimeConst = 150;
      let breatheTimeArray = [];
 
      console.log('wwaaaat');
 
      for (let i = 0; i < 8; i++) {
-       breatheTimeArray.push(breatheTime - 15 * i);
+       breatheTimeArray.push(breatheTimeConst - 15 * i);
      }
 
      return breatheTimeArray.map((time, index) => {
@@ -58,11 +54,36 @@ export default function Main() {
 
        return (
          <Text key={index}>
-           Breathe: {breatheMins}.{breatheSecs} | Hold: {holdMins}.{holdSecs}
+           {breatheMins}.{breatheSecs}
          </Text>
        );
      });
    };
+
+   
+  const generateHoldTable = () => {
+    const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
+    const holdTime = Math.round(maxTime / 2);
+    const holdMins = secToMin(holdTime)[0];
+    const holdSecs = addZero(secToMin(holdTime)[1]);
+    let holdTimeConst = 150;
+    let holdTimeArray = [];
+
+    for (let i = 0; i < 8; i++) {
+      holdTimeArray.push(holdTimeConst - 15 * i);
+    }
+
+    console.log('alustan');
+
+    return holdTimeArray.map((time, index) => {
+
+      return (
+        <Text key={index}>
+          {holdMins}.{holdSecs}
+        </Text>
+      );
+    });
+  };
 
    return (
      <View style={styles.mainContainer}>
@@ -85,7 +106,24 @@ export default function Main() {
          </Picker>
          <Text>s</Text>
        </View>
-       <View style={styles.tableContainer}>{generateTable()}</View>
+       <View style={styles.tableContainer}>
+         
+       <View style={styles.tableLeft}>
+        <Text>Breathe</Text>
+        {generateBreatheTable()}
+      </View>
+      <View style={styles.tableRight}>
+        <Text>Hold</Text>
+        {generateHoldTable()}
+      </View>
+      <View>
+        <Text>Start</Text>
+      </View>
+      <View style={styles.bottomBar}>
+        <Text>O2</Text>
+        <Text>CO2</Text>
+      </View>
+     </View>
      </View>
    );
 }
