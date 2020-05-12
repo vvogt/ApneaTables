@@ -1,114 +1,80 @@
-import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native';
-import { Picker } from '@react-native-community/picker';
-import { useState } from 'react';
-import { styles } from '../styles/_main.js';
-import { addZero, secToMin } from '../util';
+import React from "react";
+import { Text, View, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { styles } from "../styles/_main.js";
+import { addZero, secToMin } from "../util";
+import TimePicker from "./TimePicker.jsx";
 
 export default function Oxygen() {
+  const [minutes, setMinutes] = useState("1");
+  const [seconds, setSeconds] = useState("0");
 
-    const [minutes, setMinutes] = useState('1');
-   const [seconds, setSeconds] = useState('0');
+  const generateBreatheTable = () => {
+    let breatheTimeConst = 150;
+    let breatheTimeArray = [];
 
-   const generatePickerItems = (maxValue) => {
-     let valuesArray = [];
+    for (let i = 0; i < 8; i++) {
+      breatheTimeArray.push(breatheTimeConst - 15 * i);
+    }
 
-     for (let i = 0; i < maxValue + 1; i++) {
-       valuesArray.push(i);
-     }
+    return breatheTimeArray.map((time, index) => {
+      let breatheMins = secToMin(time)[0];
+      let breatheSecs = addZero(secToMin(time)[1]);
 
-     let pickerItemsArray = valuesArray.map((value, index) => (
-       <Picker.Item
-         label={value.toString()}
-         value={value.toString()}
-         key={index}
-       />
-     ));
+      return (
+        <Text key={index} style={styles.tableText}>
+          {breatheMins}:{breatheSecs}
+        </Text>
+      );
+    });
+  };
 
-     return pickerItemsArray;
-   };
+  const generateHoldTable = () => {
+    const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
+    const holdTime = Math.round(maxTime / 2);
+    const holdMins = secToMin(holdTime)[0];
+    const holdSecs = addZero(secToMin(holdTime)[1]);
+    const holdTimeArray = [];
 
-   const generateBreatheTable = () => {
-      let breatheTimeConst = 150;
-      let breatheTimeArray = [];
+    console.log("check");
 
-      for (let i = 0; i < 8; i++) {
-         breatheTimeArray.push(breatheTimeConst - 15 * i);
-      }
+    for (let i = 0; i < 8; i++) {
+      holdTimeArray.push(
+        <Text key={i} style={styles.tableText}>
+          {holdMins}:{holdSecs}
+        </Text>
+      );
+    }
 
-      return breatheTimeArray.map((time, index) => {
-         let breatheMins = secToMin(time)[0];
-         let breatheSecs = addZero(secToMin(time)[1]);
+    return holdTimeArray;
+  };
 
-         return (
-            <Text key={index} style={styles.tableText}>
-               {breatheMins}:{breatheSecs}
-            </Text>
-         );
-      });
-   };
+  return (
+    <>
 
-   
-   const generateHoldTable = () => {
-      const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-      const holdTime = Math.round(maxTime / 2);
-      const holdMins = secToMin(holdTime)[0];
-      const holdSecs = addZero(secToMin(holdTime)[1]);
-      const holdTimeArray = [];
+      <TimePicker
+        minutes={minutes}
+        seconds={seconds}
+        setMinutes={(itemValue) => setMinutes(itemValue)}
+        setSeconds={(itemValue) => setSeconds(itemValue)}
+      />
 
-      console.log('check');
+      <View style={styles.bottomContainer}>
+        <View style={styles.tableContainer}>
+          <View style={styles.tableLeft}>
+            <Text style={styles.tableHeader}>Breathe</Text>
+            {generateBreatheTable()}
+          </View>
+          <View style={styles.tableRight}>
+            <Text style={styles.tableHeader}>Hold</Text>
+            {generateHoldTable()}
+          </View>
+        </View>
 
-      for (let i = 0; i < 8; i++) {
-         holdTimeArray.push(
-           <Text key={i} style={styles.tableText}>
-             {holdMins}:{holdSecs}
-           </Text>
-         );
-      }
-
-      return holdTimeArray;
-   };
-
-    return (
-        <>
-            <View style={styles.topContainer}>
-                <Text styles={styles.topText}>Enter your current maximum breathhold time:</Text>
-                <View style={styles.timeContainer}>
-                <Picker
-                    selectedValue={minutes}
-                    style={{ height: 50, width: 100 }}
-                    onValueChange={(itemValue, itemIndex) => setMinutes(itemValue)}
-                >
-                    {generatePickerItems(20)}
-                </Picker>
-                <Text>min</Text>
-                <Picker
-                    selectedValue={seconds}
-                    style={{ height: 50, width: 100 }}
-                    onValueChange={(itemValue, itemIndex) => setSeconds(itemValue)}
-                >
-                    {generatePickerItems(59)}
-                </Picker>
-                <Text>s</Text>
-                </View>
-            </View>
-
-            <View style={styles.bottomContainer}>
-                <View style={styles.tableContainer}>
-                <View style={styles.tableLeft}>
-                    <Text style={styles.tableHeader}>Breathe</Text>
-                    {generateBreatheTable()}
-                </View>
-                <View style={styles.tableRight}>
-                    <Text style={styles.tableHeader}>Hold</Text>
-                    {generateHoldTable()}
-                </View>
-                </View>
-
-                <TouchableOpacity style={styles.startButton}>
-                <Text style={styles.buttonText}>START</Text>
-                </TouchableOpacity>
-            </View>
-         </>
-    );
+        <TouchableOpacity style={styles.startButton}>
+          <Text style={styles.buttonText}>START</Text>
+        </TouchableOpacity>
+      </View>
+    </>
+  );
 }
