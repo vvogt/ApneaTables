@@ -3,7 +3,8 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
-import TimePicker from "./TimePicker.jsx";
+import TimePicker from "./TimePicker";
+import TimeTables from "./TimeTables";
 
 export default function Oxygen() {
   const [minutes, setMinutes] = useState("1");
@@ -51,30 +52,21 @@ export default function Oxygen() {
 
   return (
     <>
-
       <TimePicker
         minutes={minutes}
         seconds={seconds}
         setMinutes={(itemValue) => setMinutes(itemValue)}
         setSeconds={(itemValue) => setSeconds(itemValue)}
       />
-
-      <View style={styles.bottomContainer}>
-        <View style={styles.tableContainer}>
-          <View style={styles.tableLeft}>
-            <Text style={styles.tableHeader}>Breathe</Text>
-            {generateBreatheTable()}
-          </View>
-          <View style={styles.tableRight}>
-            <Text style={styles.tableHeader}>Hold</Text>
-            {generateHoldTable()}
-          </View>
-        </View>
-
-        <TouchableOpacity style={styles.startButton}>
-          <Text style={styles.buttonText}>START</Text>
-        </TouchableOpacity>
-      </View>
+      <TimeTables
+        generateLeftTable={generateBreatheTable}
+        generateRightTable={generateHoldTable}
+        headerLeft="Breath"
+        headerRight="Hold"
+      />
+      <TouchableOpacity style={styles.startButton}>
+        <Text style={styles.buttonText}>START</Text>
+      </TouchableOpacity>
     </>
   );
 }
