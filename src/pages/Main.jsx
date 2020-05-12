@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { styles } from '../styles/_main.js';
-import { BottomTabs } from '../components/bottomTabs';
-import Oxygen from '../components/Oxygen.js';
+import { BottomTabs } from '../components/BottomTabs';
+import Oxygen from '../components/Oxygen';
 
 export default function Main() {
 
