@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
@@ -36,7 +35,7 @@ export default function Carbon() {
     const holdTimeArray = [];
 
     let holdTime = Math.round(maxTime / 3) - 15;
-    
+
     for (let i = 0; i < 8; i++) {
       if(holdTime + 15 <= holdTimeThreshold) {
         holdTime += 15;
