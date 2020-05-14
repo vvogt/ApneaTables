@@ -2,14 +2,14 @@ import React from "react";
 import { View } from "react-native";
 import { styles } from "../styles/_main.js";
 import { BottomTabs } from "../components/BottomTabs";
-import Oxygen from "../components/Oxygen";
 import Circle from "../components/Circle";
+import Carbon from "../components/Carbon";
 
 export default function Main() {
   return (
     <View style={styles.mainContainer}>
-      <Oxygen />
       <Circle />
+      <Carbon />
       <BottomTabs />
     </View>
   );
