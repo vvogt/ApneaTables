@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
@@ -11,11 +10,11 @@ export default function Carbon() {
   const [seconds, setSeconds] = useState("0");
 
   const generateBreatheTable = () => {
-    let breatheTimeConst = 150;
+    let breatheTimeConst = 120;
     let breatheTimeArray = [];
 
     for (let i = 0; i < 8; i++) {
-      breatheTimeArray.push(breatheTimeConst - 15 * i);
+      breatheTimeArray.push(breatheTimeConst);
     }
 
     return breatheTimeArray.map((time, index) => {
@@ -32,12 +31,18 @@ export default function Carbon() {
 
   const generateHoldTable = () => {
     const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-    const holdTime = Math.round(maxTime / 2);
-    const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
+    const holdTimeThreshold = Math.round(maxTime * 0.8);
     const holdTimeArray = [];
 
+    let holdTime = Math.round(maxTime / 3) - 15;
+
     for (let i = 0; i < 8; i++) {
+      if(holdTime + 15 <= holdTimeThreshold) {
+        holdTime += 15;
+      } 
+      const holdMins = secToMin(holdTime)[0];
+      const holdSecs = addZero(secToMin(holdTime)[1]);
+
       holdTimeArray.push(
         <Text key={i} style={styles.tableText}>
           {holdMins}:{holdSecs}
