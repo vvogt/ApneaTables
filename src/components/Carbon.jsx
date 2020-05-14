@@ -6,7 +6,7 @@ import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
-export default function Oxygen() {
+export default function Carbon() {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
