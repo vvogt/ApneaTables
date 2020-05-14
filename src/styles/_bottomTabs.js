@@ -25,12 +25,13 @@ const styles = StyleSheet.create({
   tab_active: {
     backgroundColor: "#00B2FF"
   },
-  text_active: {
+  tab_text_active: {
     color: "#ffffff",
     textAlign: 'center',
   },
   tab_text: {
-     textAlign: 'center',
+    color: "#000000",
+    textAlign: 'center',
   }
 });
 
