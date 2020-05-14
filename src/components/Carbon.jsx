@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";

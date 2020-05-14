@@ -10,7 +10,7 @@ export default function Main() {
     <View style={styles.mainContainer}>
       {/* <Carbon /> */}
       <Oxygen />
-      <BottomTabs />
+      <BottomTabs leftOnPress={() => console.log("left")} rightOnPress={() => console.log("right")} />
     </View>
   );
 }
