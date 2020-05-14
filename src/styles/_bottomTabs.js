@@ -22,8 +22,15 @@ const styles = StyleSheet.create({
     width: '50%',
     justifyContent: 'center',
   },
+  tab_active: {
+    backgroundColor: "#00B2FF"
+  },
+  text_active: {
+    color: "#ffffff",
+    textAlign: 'center',
+  },
   tab_text: {
-     textAlign: 'center'
+     textAlign: 'center',
   }
 });
 
