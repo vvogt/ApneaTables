@@ -2,30 +2,27 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { useState, useRef, useEffect } from "react";
 import { styles } from "../styles/_main.js";
-import { addZero, secToMin } from "../util";
+import { addZero, secToMin, generateCO2BreatheArray } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
 export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
+  const [breatheSecsArray, setBreatheSecsArray] = useState([]);
+  
+  const mounted = useRef();
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      props.updateMaxTime(parseInt(minutes)*60 + parseInt(seconds));
+    }
+  });
 
   const generateBreatheTable = () => {
     let breatheTimeConst = 150;
-    let breatheTimeArray = [];
-
-    const mounted = useRef();
-    useEffect(() => {
-      if (!mounted.current) {
-        mounted.current = true;
-      } else {
-        props.setMaxTime(minutes*60 + seconds)
-      }
-    });
-
-    for (let i = 0; i < 8; i++) {
-      breatheTimeArray.push(breatheTimeConst - 15 * i);
-    }
+    let breatheTimeArray = generateCO2BreatheArray();
 
     return breatheTimeArray.map((time, index) => {
       let breatheMins = secToMin(time)[0];
@@ -68,7 +65,7 @@ export default function Carbon(props) {
       <TimeTables
         generateLeftTable={generateBreatheTable}
         generateRightTable={generateHoldTable}
-        headerLeft="Breath"
+        headerLeft="Breathe"
         headerRight="Hold"
       />
       <TouchableOpacity style={styles.startButton} onPress={props.startOnPress}>

@@ -15,6 +15,7 @@ export default function Main() {
   const handleTimer = (timerType) => {
     setTab(2);
     setTimerType(timerType);
+    console.log(maxTime);
   }
 
   return (
