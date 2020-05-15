@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { styles } from "../styles/_main.js";
 import { BottomTabs } from "../components/BottomTabs";
+import Circle from "../components/Circle";
 import Carbon from "../components/Carbon";
 import Oxygen from "../components/Oxygen";
 
