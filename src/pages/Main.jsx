@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import { styles } from "../styles/_main.js";
 import { BottomTabs } from "../components/BottomTabs";
+import Circle from "../components/Circle";
 import Carbon from "../components/Carbon";
 import Oxygen from "../components/Oxygen";
 
@@ -10,9 +11,9 @@ export default function Main() {
 
   return (
     <View style={styles.mainContainer}>
-      {tab == 0 && <Carbon /> }
-      {tab == 1 && <Oxygen /> }
-      <BottomTabs leftOnPress={() => setTab(1)} rightOnPress={() => setTab(0)} />
+      {tab == 0 && <Oxygen />}
+      {tab == 1 && <Carbon />}
+      <BottomTabs leftOnPress={() => setTab(0)} rightOnPress={() => setTab(1)} activeTab={tab} />
     </View>
   );
 }
