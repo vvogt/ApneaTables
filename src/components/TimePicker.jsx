@@ -18,6 +18,7 @@ export default function TimePicker(props) {
 
     return pickerItemsArray;
   };
+
   return (
     <View style={styles.topContainer}>
       <Text styles={styles.topText}>Enter your current maximum breathhold time:</Text>

@@ -1,18 +1,27 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
-export default function Carbon() {
+export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
   const generateBreatheTable = () => {
     let breatheTimeConst = 150;
     let breatheTimeArray = [];
+
+    const mounted = useRef();
+    useEffect(() => {
+      if (!mounted.current) {
+        mounted.current = true;
+      } else {
+        props.setMaxTime(minutes*60 + seconds)
+      }
+    });
 
     for (let i = 0; i < 8; i++) {
       breatheTimeArray.push(breatheTimeConst - 15 * i);
@@ -62,7 +71,7 @@ export default function Carbon() {
         headerLeft="Breath"
         headerRight="Hold"
       />
-      <TouchableOpacity style={styles.startButton}>
+      <TouchableOpacity style={styles.startButton} onPress={props.startOnPress}>
         <Text style={styles.buttonText}>START</Text>
       </TouchableOpacity>
     </>

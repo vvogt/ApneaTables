@@ -5,7 +5,7 @@ import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
-export default function Carbon() {
+export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
@@ -67,7 +67,7 @@ export default function Carbon() {
         headerLeft="Breath"
         headerRight="Hold"
       />
-      <TouchableOpacity style={styles.startButton}>
+      <TouchableOpacity style={styles.startButton} onPress={props.startOnPress}>
         <Text style={styles.buttonText}>START</Text>
       </TouchableOpacity>
     </>

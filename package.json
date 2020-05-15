@@ -18,6 +18,7 @@
     "react-native-reanimated": "^1.8.0",
     "react-native-redash": "^14.0.4",
     "react-native-svg": "^12.1.0",
+    "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
