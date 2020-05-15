@@ -5,7 +5,7 @@ import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
-export default function Carbon(props) {
+export default function Oxygen(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
@@ -26,7 +26,9 @@ export default function Carbon(props) {
           {breatheMins}:{breatheSecs}
         </Text>
       );
+
     });
+
   };
 
   const generateHoldTable = () => {

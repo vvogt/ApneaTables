@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
