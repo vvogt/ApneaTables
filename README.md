@@ -15,7 +15,7 @@ The app has following functionality:
 
 ## How to use
 
-* After opening the app you may are greeted with the O2 screen
+* After opening the app you are greeted with the O2 screen
 * At the bottom you can choose if you want to train O2 or CO2
 * At the top you can enter your maximum breathhold time
 * Once the time is set, you can press the start button to begin training
