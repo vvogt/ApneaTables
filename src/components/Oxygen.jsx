@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
@@ -8,6 +8,15 @@ import TimeTables from "./TimeTables";
 export default function Oxygen(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
+
+  const mounted = useRef();
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      props.getSecondsForTimer(parseInt(minutes) * 60 + parseInt(seconds));
+    }
+  });
 
   const generateBreatheTable = () => {
     let breatheTimeConst = 120;
