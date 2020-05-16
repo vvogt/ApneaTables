@@ -16,7 +16,7 @@ const getRemaining = (time) => {
 export default function Timer(props) {
    let timeType = 0
    if(props.type === 1) {
-   timeType = 10
+   timeType = 150
    } else {
    timeType = 120
 }
@@ -72,12 +72,12 @@ export default function Timer(props) {
                   console.log(arrayPlace)
                   if (remainingSecs === 0 && timeSwitch === 2) {
                     setRemainingSecs(secsArray[arrayPlace]);
-                    setTimeSwitch(2)
+                    setTimeSwitch(1)
                   }
                   if (remainingSecs === 0 && timeSwitch === 1) {
                     setRemainingSecs(props.maxTime / 2);
                     setIsActive(true);
-                    setTimeSwitch(1)
+                    setTimeSwitch(2)
                      }
     }
 }
@@ -106,12 +106,6 @@ export default function Timer(props) {
          </View>
          <StatusBar barStyle="light-content" />
                <Text>{`${mins}:${secs}`}</Text>
-               <TouchableOpacity onPress={this.toggle}>
-                   <Text >{isActive ? 'Pause' : 'Start'}</Text>
-               </TouchableOpacity>
-               <TouchableOpacity onPress={this.reset2}>
-                   <Text>Reset</Text>
-               </TouchableOpacity>
          <Text>{ props.type === 0 ? "O2" : "CO2"}</Text>
       </View>
    )
