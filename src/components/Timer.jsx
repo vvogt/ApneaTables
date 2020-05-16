@@ -63,6 +63,9 @@ export default function Timer(props) {
         setIsActive(true);
         setTimeSwitch(1)
       }
+      if (remainingSecs === 0 && timeSwitch === 2 && arrayPlace === 7) {
+        props.closeTimer()
+      }
     } else {
       const secsArray = generateCO2BreatheArray()
       if (remainingSecs === 0 && timeSwitch === 2) {
@@ -73,6 +76,9 @@ export default function Timer(props) {
         setRemainingSecs(props.maxTime / 2);
         setIsActive(true);
         setTimeSwitch(2)
+      }
+      if (remainingSecs === 0 && timeSwitch === 1 && arrayPlace === 7) {
+        props.closeTimer()
       }
     }
 }
@@ -89,8 +95,6 @@ export default function Timer(props) {
       if(remainingSecs === 0 && timeSwitch === 2) {
       changeTime();
       }
-      if(remainingSecs === 0 && timeSwitch === 2 && arrayPlace === 7)
-        props.closeTimer()
       }
     return () => clearInterval(interval);
     },
