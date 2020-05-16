@@ -76,7 +76,7 @@ export default function Timer(props) {
        if(remainingSecs === 0 && timeSwitch === 2) {
                 changeTime();
               }
-       if(arrayPlace > 7)
+       if(remainingSecs === 0 && timeSwitch === 2 && arrayPlace === 7)
          props.closeTimer()
        }
  return () => clearInterval(interval);
