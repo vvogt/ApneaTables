@@ -10,6 +10,16 @@ import { addZero, secToMin, generateCO2BreatheArray } from "../util";
 export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
+  const [breatheSecsArray, setBreatheSecsArray] = useState([]);
+  
+  const mounted = useRef();
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+    } else {
+      props.getSecondsForTimer(parseInt(minutes)*60 + parseInt(seconds));
+    }
+  });
 
   const generateBreatheTable = () => {
     let breatheTimeConst = 150;
@@ -46,14 +56,19 @@ export default function Carbon(props) {
     const holdMins = secToMin(holdTime)[0];
     const holdSecs = addZero(secToMin(holdTime)[1]);
     const holdTimeArray = [];
+    const holdTimesInSec = [];
 
     for (let i = 0; i < 8; i++) {
+      holdTimesInSec.push(holdMins*60+holdSecs);
+
       holdTimeArray.push(
         <Text key={i} style={styles.tableText}>
           {holdMins}:{holdSecs}
         </Text>
       );
     }
+
+    props.getSecondsForTimer(holdTimesInSec);
 
     return holdTimeArray;
   };
