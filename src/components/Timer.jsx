@@ -3,8 +3,6 @@ import { View, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from "../styles/_timer.js"
 
-
-
 export default function Timer(props) {
 
    const generateO2HoldArray = (maxTimeSecs) => {
