@@ -14,8 +14,13 @@ const getRemaining = (time) => {
     return { mins: formatNumber(mins), secs: formatNumber(secs) };
 }
 export default function Timer(props) {
-
-  let [remainingSecs, setRemainingSecs] = useState(120);
+   let timeType = 0
+   if(props.type === 1) {
+   timeType = 10
+   } else {
+   timeType = 120
+}
+  let [remainingSecs, setRemainingSecs] = useState(timeType);
   let [isActive, setIsActive] = useState(true);
   let [timeSwitch, setTimeSwitch] = useState(1);
   let [arrayPlace, setArrayPlace] = useState(0);
@@ -65,11 +70,11 @@ export default function Timer(props) {
     } else {
         const secsArray = generateCO2BreatheArray()
                   console.log(arrayPlace)
-                  if (remainingSecs === 0 && timeSwitch === 1) {
+                  if (remainingSecs === 0 && timeSwitch === 2) {
                     setRemainingSecs(secsArray[arrayPlace]);
                     setTimeSwitch(2)
                   }
-                  if (remainingSecs === 0 && timeSwitch === 2) {
+                  if (remainingSecs === 0 && timeSwitch === 1) {
                     setRemainingSecs(props.maxTime / 2);
                     setIsActive(true);
                     setTimeSwitch(1)
@@ -79,9 +84,6 @@ export default function Timer(props) {
     useEffect(() => {
       let interval = null;
       if (isActive) {
-        if(props.type === 1) {
-         setRemainingSecs(props.maxTime / 2);
-       }
        interval = setInterval(() => {
                 setRemainingSecs(remainingSecs => remainingSecs - 1);
               }, 1000);
