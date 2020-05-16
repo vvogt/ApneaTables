@@ -10,20 +10,19 @@ import Timer from "../components/Timer"
 export default function Main() {
   const [tab, setTab] = useState(0);
   const [timerType, setTimerType] = useState(0);
-  const [secondsForTimer, setSecondsForTimer] = useState([]); 
+  const [maxTime, setMaxTime] = useState(60); 
 
   const handleTimer = (timerType) => {
     setTab(2);
     setTimerType(timerType);
+    setMaxTime(minutes * 60 + seconds);
   }
-
-
 
   return (
     <View style={styles.mainContainer}>
-      {tab == 0 && <Oxygen startOnPress={() => handleTimer(0)} getSecondsForTimer={setSecondsForTimer}/>}
-      {tab == 1 && <Carbon startOnPress={() => handleTimer(1)} getSecondsForTimer={setSecondsForTimer}/>}
-      {tab == 2 && <Timer type={timerType} maxTime={maxTime} closeTimer={() => setTab(timerType)} />}
+      {tab == 0 && <Oxygen startOnPress={() => handleTimer(0)} updateMaxTime={setMaxTime} />}
+      {tab == 1 && <Carbon startOnPress={() => handleTimer(1)} updateMaxTime={setMaxTime} />}
+      {tab == 2 && <Timer type={timerType} closeTimer={() => setTab(timerType)} />}
       {tab != 2 && <BottomTabs leftOnPress={() => setTab(0)} rightOnPress={() => setTab(1)} activeTab={tab} />}
     </View>
   );

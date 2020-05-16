@@ -9,6 +9,7 @@ import TimeTables from "./TimeTables";
 export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
+  const [holdTimes, setHoldTimes ] = useState([]);
 
   const generateBreatheTable = () => {
     let breatheTimeConst = 150;
@@ -48,7 +49,7 @@ export default function Carbon(props) {
       );
     }
 
-    props.getSecondsForTimer(holdTimesInSec);
+    setHoldTimes(holdTimesInSec);
 
     return holdTimeArray;
   };

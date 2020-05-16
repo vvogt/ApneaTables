@@ -48,8 +48,6 @@ export default function Carbon(props) {
       );
     }
 
-    props.getSecondsForTimer(holdTimesInSec);
-
     return holdTimeArray;
   };
 

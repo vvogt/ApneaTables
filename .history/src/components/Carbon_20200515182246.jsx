@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
@@ -13,6 +13,15 @@ export default function Carbon(props) {
   const generateBreatheTable = () => {
     let breatheTimeConst = 150;
     let breatheTimeArray = [];
+
+    const mounted = useRef();
+    useEffect(() => {
+      if (!mounted.current) {
+        mounted.current = true;
+      } else {
+        props.setMaxTime(minutes*60 + seconds)
+      }
+    });
 
     for (let i = 0; i < 8; i++) {
       breatheTimeArray.push(breatheTimeConst - 15 * i);
@@ -36,19 +45,14 @@ export default function Carbon(props) {
     const holdMins = secToMin(holdTime)[0];
     const holdSecs = addZero(secToMin(holdTime)[1]);
     const holdTimeArray = [];
-    const holdTimesInSec = [];
 
     for (let i = 0; i < 8; i++) {
-      holdTimesInSec.push(holdMins*60+holdSecs);
-
       holdTimeArray.push(
         <Text key={i} style={styles.tableText}>
           {holdMins}:{holdSecs}
         </Text>
       );
     }
-
-    props.getSecondsForTimer(holdTimesInSec);
 
     return holdTimeArray;
   };

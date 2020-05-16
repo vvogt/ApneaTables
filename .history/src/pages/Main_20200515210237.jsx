@@ -21,8 +21,8 @@ export default function Main() {
 
   return (
     <View style={styles.mainContainer}>
-      {tab == 0 && <Oxygen startOnPress={() => handleTimer(0)} getSecondsForTimer={setSecondsForTimer}/>}
-      {tab == 1 && <Carbon startOnPress={() => handleTimer(1)} getSecondsForTimer={setSecondsForTimer}/>}
+      {tab == 0 && <Oxygen startOnPress={() => handleTimer(0)} />}
+      {tab == 1 && <Carbon startOnPress={() => handleTimer(1)} />}
       {tab == 2 && <Timer type={timerType} maxTime={maxTime} closeTimer={() => setTab(timerType)} />}
       {tab != 2 && <BottomTabs leftOnPress={() => setTab(0)} rightOnPress={() => setTab(1)} activeTab={tab} />}
     </View>

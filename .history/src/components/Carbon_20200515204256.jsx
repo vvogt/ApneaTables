@@ -14,6 +14,17 @@ export default function Carbon(props) {
     let breatheTimeConst = 150;
     let breatheTimeArray = [];
 
+    const mounted = useRef();
+    useEffect(() => {
+      if (!mounted.current) {
+        mounted.current = true;
+      } else {
+        props.setMaxTime(minutes*60 + seconds)
+      }
+    });
+
+
+
     for (let i = 0; i < 8; i++) {
       breatheTimeArray.push(breatheTimeConst - 15 * i);
     }
@@ -47,8 +58,6 @@ export default function Carbon(props) {
         </Text>
       );
     }
-
-    props.getSecondsForTimer(holdTimesInSec);
 
     return holdTimeArray;
   };

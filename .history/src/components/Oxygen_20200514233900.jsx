@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { useState, useRef, useEffect } from "react";
 import { styles } from "../styles/_main.js";
 import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
 
-export default function Carbon(props) {
+export default function Carbon() {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
 
   const generateBreatheTable = () => {
-    let breatheTimeConst = 150;
+    let breatheTimeConst = 120;
     let breatheTimeArray = [];
 
     for (let i = 0; i < 8; i++) {
-      breatheTimeArray.push(breatheTimeConst - 15 * i);
+      breatheTimeArray.push(breatheTimeConst);
     }
 
     return breatheTimeArray.map((time, index) => {
@@ -32,14 +31,17 @@ export default function Carbon(props) {
 
   const generateHoldTable = () => {
     const maxTime = parseInt(minutes) * 60 + parseInt(seconds);
-    const holdTime = Math.round(maxTime / 2);
-    const holdMins = secToMin(holdTime)[0];
-    const holdSecs = addZero(secToMin(holdTime)[1]);
+    const holdTimeThreshold = Math.round(maxTime * 0.8);
     const holdTimeArray = [];
-    const holdTimesInSec = [];
+
+    let holdTime = Math.round(maxTime / 3) - 15;
 
     for (let i = 0; i < 8; i++) {
-      holdTimesInSec.push(holdMins*60+holdSecs);
+      if(holdTime + 15 <= holdTimeThreshold) {
+        holdTime += 15;
+      } 
+      const holdMins = secToMin(holdTime)[0];
+      const holdSecs = addZero(secToMin(holdTime)[1]);
 
       holdTimeArray.push(
         <Text key={i} style={styles.tableText}>
@@ -47,8 +49,6 @@ export default function Carbon(props) {
         </Text>
       );
     }
-
-    props.getSecondsForTimer(holdTimesInSec);
 
     return holdTimeArray;
   };
@@ -67,7 +67,7 @@ export default function Carbon(props) {
         headerLeft="Breath"
         headerRight="Hold"
       />
-      <TouchableOpacity style={styles.startButton} onPress={props.startOnPress}>
+      <TouchableOpacity style={styles.startButton}>
         <Text style={styles.buttonText}>START</Text>
       </TouchableOpacity>
     </>
