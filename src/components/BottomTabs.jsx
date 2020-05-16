@@ -13,7 +13,6 @@ export function BottomTabs(props) {
       } else {
         textStyles = [styles.tab_text, styles.tab_text_active];
         return ([styles.tab_right, styles.tab_active]);
-
       }
     } else {
       if(index == 0) {
