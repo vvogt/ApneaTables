@@ -5,6 +5,7 @@ import { styles } from "../styles/_timer.js"
 import { StyleSheet, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
 
 
+
 const formatNumber = number => `0${number}`.slice(-2);
 
 const getRemaining = (time) => {
@@ -14,46 +15,69 @@ const getRemaining = (time) => {
 }
 export default function Timer(props) {
 
-  const [remainingSecs, setRemainingSecs] = useState(10);
-  const [isActive, setIsActive] = useState(false);
-  const [switch] = useState(false);
-  const { mins, secs } = getRemaining(remainingSecs);
+  let [remainingSecs, setRemainingSecs] = useState(5);
+  let [isActive, setIsActive] = useState(true);
+  let [timeSwitch, setTimeSwitch] = useState(1);
+  let [arrayPlace, setArrayPlace] = useState(0);
+  let { mins, secs } = getRemaining(remainingSecs);
+
+ const generateO2HoldArray = (maxTimeSecs) => {
+      const holdTimeThreshold = Math.round(maxTimeSecs * 0.8);
+      const holdSecsArray = [];
+      let holdTime = Math.round(maxTimeSecs / 3) - 15;
+
+      for (let i = 0; i < 8; i++) {
+         if(holdTime + 15 <= holdTimeThreshold) {
+            holdTime += 15;
+         }
+
+         holdSecsArray.push(holdTime);
+      }
+
+      return holdSecsArray;
+   }
+
 
   toggle = () => {
       setIsActive(!isActive);
     }
 
-    reset1 = () => {
-      setRemainingSecs(10);
-      setIsActive(false);
-      switch(1)
-    }
+
     reset2 = () => {
           setRemainingSecs(5);
           setIsActive(false);
-          switch(2)
         }
+
+    changeTime = () => {
+    const secsArray = generateO2HoldArray(props.maxTime)
+
+          console.log(arrayPlace)
+          if (remainingSecs === 0 && timeSwitch === 1) {
+            setRemainingSecs(secsArray[arrayPlace]);
+            setTimeSwitch(2)
+            setArrayPlace(arrayPlace => arrayPlace + 1)
+          }
+          if (remainingSecs === 0 && timeSwitch === 2) {
+            setRemainingSecs(5);
+            setIsActive(true);
+            setTimeSwitch(1)
+             }
+    }
 
     useEffect(() => {
       let interval = null;
       if (isActive) {
-        interval = setInterval(() => {
-          setRemainingSecs(remainingSecs => remainingSecs - 1);
-        }, 1000);
-        if(remainingSecs === 0 && switch === 1) {
-        reset2();
-        toggle();
-        }
-        if(remainingSecs === 0 && switch === 2) {
-        reset2();
-        toggle();
-        }
-      } else if (!isActive && remainingSecs !== 0) {
-        clearInterval(interval);
-      }
-      return () => clearInterval(interval);
-    }, [isActive, remainingSecs], switch);
+       interval = setInterval(() => {
+                setRemainingSecs(remainingSecs => remainingSecs - 1);
+              }, 1000);
+      if(remainingSecs === 0) {
+         changeTime();
+       }
+       if(arrayPlace < 7)
+       return () => clearInterval(interval);
+       }
 
+    }, [isActive, remainingSecs])
    return (
       <View style={ styles.timerContainer }>
          <View style={ styles.top }>
@@ -64,7 +88,7 @@ export default function Timer(props) {
                <TouchableOpacity onPress={this.toggle}>
                    <Text >{isActive ? 'Pause' : 'Start'}</Text>
                </TouchableOpacity>
-               <TouchableOpacity onPress={this.reset}>
+               <TouchableOpacity onPress={this.reset2}>
                    <Text>Reset</Text>
                </TouchableOpacity>
          <Text>{ props.type === 0 ? "O2" : "CO2"}</Text>
