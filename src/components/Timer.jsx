@@ -110,14 +110,6 @@ export default function Timer(props) {
       const percent = current / start * 100;
       return percent;
     }
-
-    const breatheOrHold = () => {
-      if ((props.type === 0 && timeSwitch === 1) || (props.type === 1 && timeSwitch === 2) ) {
-        return 'Breathe'
-      } else {
-        return 'Hold'
-      }
-    }
    
    return (
       <View style={ styles.timerContainer }>
@@ -139,7 +131,7 @@ export default function Timer(props) {
           </ProgressCircle>
         </View>
 
-        <Text style={ styles.timerType}>{props.type === 0 ? "O2" : "CO2"}</Text>
+        <Text style={ styles.timerType }>{props.type === 0 ? "O2" : "CO2"}</Text>
           
       </View>
    )
