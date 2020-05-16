@@ -1,8 +1,8 @@
 # ApneaTables
 
-## https://expo.io/@wamu/ApneaTables
+https://expo.io/@wamu/ApneaTables
 
-## Images: https://drive.google.com/drive/u/1/folders/1EJYGf31lMDLLx_pljVGdhl_kEongEPdX
+Images: https://drive.google.com/drive/u/1/folders/1EJYGf31lMDLLx_pljVGdhl_kEongEPdX
 
 This is a app which allows you to train holding in your breath. There are two modes: O2 and CO2. The O2 table helps you train your body to get accustomed to low levels of oxygen and the CO2 table helps you get used to high levels of carbon dioxide.
 
