@@ -24,8 +24,9 @@ The app has following functionality:
 
 ## Authors
 
-* **Madis Otenurm**
+* **Vahur Vogt**
 * **Erkki Sula**
 * **Künter Evert**
+* **Madis Otenurm**
 * **Henri Tammo**
-* **Vahur Vogt**
+
