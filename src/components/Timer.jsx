@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { styles } from "../styles/_timer.js"
 import { StyleSheet, StatusBar, TouchableOpacity, Dimensions } from 'react-native';
-
+import { generateCO2BreatheArray } from "../util.js"
 
 
 const formatNumber = number => `0${number}`.slice(-2);
@@ -15,7 +15,7 @@ const getRemaining = (time) => {
 }
 export default function Timer(props) {
 
-  let [remainingSecs, setRemainingSecs] = useState(5);
+  let [remainingSecs, setRemainingSecs] = useState(120);
   let [isActive, setIsActive] = useState(true);
   let [timeSwitch, setTimeSwitch] = useState(1);
   let [arrayPlace, setArrayPlace] = useState(0);
@@ -49,6 +49,7 @@ export default function Timer(props) {
         }
 
     changeTime = () => {
+    if(props.type === 0) {
     const secsArray = generateO2HoldArray(props.maxTime)
 
           console.log(arrayPlace)
@@ -57,15 +58,30 @@ export default function Timer(props) {
             setTimeSwitch(2)
           }
           if (remainingSecs === 0 && timeSwitch === 2) {
-            setRemainingSecs(5);
+            setRemainingSecs(120);
             setIsActive(true);
             setTimeSwitch(1)
              }
+    } else {
+        const secsArray = generateCO2BreatheArray()
+                  console.log(arrayPlace)
+                  if (remainingSecs === 0 && timeSwitch === 1) {
+                    setRemainingSecs(secsArray[arrayPlace]);
+                    setTimeSwitch(2)
+                  }
+                  if (remainingSecs === 0 && timeSwitch === 2) {
+                    setRemainingSecs(props.maxTime / 2);
+                    setIsActive(true);
+                    setTimeSwitch(1)
+                     }
     }
-
+}
     useEffect(() => {
       let interval = null;
       if (isActive) {
+        if(props.type === 1) {
+         setRemainingSecs(props.maxTime / 2);
+       }
        interval = setInterval(() => {
                 setRemainingSecs(remainingSecs => remainingSecs - 1);
               }, 1000);
@@ -74,8 +90,8 @@ export default function Timer(props) {
          changeTime();
        }
        if(remainingSecs === 0 && timeSwitch === 2) {
-                changeTime();
-              }
+        changeTime();
+        }
        if(remainingSecs === 0 && timeSwitch === 2 && arrayPlace === 7)
          props.closeTimer()
        }

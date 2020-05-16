@@ -2,9 +2,10 @@ import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { useState, useRef, useEffect } from "react";
 import { styles } from "../styles/_main.js";
-import { addZero, secToMin } from "../util";
 import TimePicker from "./TimePicker";
 import TimeTables from "./TimeTables";
+import { addZero, secToMin, generateCO2BreatheArray } from "../util";
+
 
 export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");

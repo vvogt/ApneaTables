@@ -9,3 +9,14 @@ export const secToMin = (secondsIn) => {
     const minSec = [min, sec];
     return minSec;
 };
+
+export const generateCO2BreatheArray = () => {
+  const breatheTimeConst = 150;
+  const breatheTimeArray = [];
+
+  for (let i = 0; i < 8; i++) {
+    breatheTimeArray.push(breatheTimeConst - 15 * i);
+  }
+
+  return breatheTimeArray;
+}
