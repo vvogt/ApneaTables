@@ -14,18 +14,25 @@ const getRemaining = (time) => {
 }
 export default function Timer(props) {
 
-  const [remainingSecs, setRemainingSecs] = useState(30);
+  const [remainingSecs, setRemainingSecs] = useState(10);
   const [isActive, setIsActive] = useState(false);
+  const [switch] = useState(false);
   const { mins, secs } = getRemaining(remainingSecs);
 
   toggle = () => {
       setIsActive(!isActive);
     }
 
-    reset = () => {
-      setRemainingSecs(30);
+    reset1 = () => {
+      setRemainingSecs(10);
       setIsActive(false);
+      switch(1)
     }
+    reset2 = () => {
+          setRemainingSecs(5);
+          setIsActive(false);
+          switch(2)
+        }
 
     useEffect(() => {
       let interval = null;
@@ -33,11 +40,19 @@ export default function Timer(props) {
         interval = setInterval(() => {
           setRemainingSecs(remainingSecs => remainingSecs - 1);
         }, 1000);
+        if(remainingSecs === 0 && switch === 1) {
+        reset2();
+        toggle();
+        }
+        if(remainingSecs === 0 && switch === 2) {
+        reset2();
+        toggle();
+        }
       } else if (!isActive && remainingSecs !== 0) {
         clearInterval(interval);
       }
       return () => clearInterval(interval);
-    }, [isActive, remainingSecs]);
+    }, [isActive, remainingSecs], switch);
 
    return (
       <View style={ styles.timerContainer }>
