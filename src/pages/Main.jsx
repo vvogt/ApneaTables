@@ -9,14 +9,13 @@ import Timer from "../components/Timer"
 
 export default function Main() {
   const [tab, setTab] = useState(0);
+  const [maxTime, setMaxTime] = useState(60); 
   const [timerType, setTimerType] = useState(0);
   const [secondsForTimer, setSecondsForTimer] = useState([]); 
   const handleTimer = (timerType) => {
     setTab(2);
     setTimerType(timerType);
   }
-
-
 
   return (
     <View style={styles.mainContainer}>

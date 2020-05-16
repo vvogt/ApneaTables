@@ -16,7 +16,7 @@ export default function Carbon(props) {
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      props.updateMaxTime(parseInt(minutes)*60 + parseInt(seconds));
+      props.getSecondsForTimer(parseInt(minutes)*60 + parseInt(seconds));
     }
   });
 
