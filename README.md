@@ -24,8 +24,8 @@ The app has following functionality:
 
 ## Authors
 
-* **Madis Otenurm** - *Project Lead* - [KareVulli](https://github.com/KareVulli)
-* **Erkki Sula** - *Developer* - [erkkisula](https://github.com/erkkisula)
-* **Künter Evert** - *Developer* - [MaikPython](https://github.com/MaikPython)
-* **Henri Tammo** - *Developer* - [HenriTammo](https://github.com/HenriTammo)
-* **Vahur Vogt** - *Designer* - [vvogt](https://github.com/vvogt)
+* **Madis Otenurm**
+* **Erkki Sula**
+* **Künter Evert**
+* **Henri Tammo**
+* **Vahur Vogt**
