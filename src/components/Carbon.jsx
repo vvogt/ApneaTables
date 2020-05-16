@@ -9,8 +9,7 @@ import TimeTables from "./TimeTables";
 export default function Carbon(props) {
   const [minutes, setMinutes] = useState("1");
   const [seconds, setSeconds] = useState("0");
-  const [breatheSecsArray, setBreatheSecsArray] = useState([]);
-
+  
   const mounted = useRef();
   useEffect(() => {
     if (!mounted.current) {
@@ -21,7 +20,6 @@ export default function Carbon(props) {
   });
 
   const generateBreatheTable = () => {
-    let breatheTimeConst = 150;
     let breatheTimeArray = generateCO2BreatheArray();
 
     return breatheTimeArray.map((time, index) => {

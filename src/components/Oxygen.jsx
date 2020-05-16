@@ -75,7 +75,7 @@ export default function Oxygen(props) {
       <TimeTables
         generateLeftTable={generateBreatheTable}
         generateRightTable={generateHoldTable}
-        headerLeft="Breath"
+        headerLeft="Breathe"
         headerRight="Hold"
       />
       <TouchableOpacity style={styles.startButton} onPress={props.startOnPress}>
