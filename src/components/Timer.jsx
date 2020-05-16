@@ -55,7 +55,6 @@ export default function Timer(props) {
           if (remainingSecs === 0 && timeSwitch === 1) {
             setRemainingSecs(secsArray[arrayPlace]);
             setTimeSwitch(2)
-            setArrayPlace(arrayPlace => arrayPlace + 1)
           }
           if (remainingSecs === 0 && timeSwitch === 2) {
             setRemainingSecs(5);
@@ -70,13 +69,17 @@ export default function Timer(props) {
        interval = setInterval(() => {
                 setRemainingSecs(remainingSecs => remainingSecs - 1);
               }, 1000);
-      if(remainingSecs === 0) {
+      if(remainingSecs === 0 && timeSwitch === 1) {
+         setArrayPlace(arrayPlace => arrayPlace + 1)
          changeTime();
        }
-       if(arrayPlace < 7)
-       return () => clearInterval(interval);
+       if(remainingSecs === 0 && timeSwitch === 2) {
+                changeTime();
+              }
+       if(arrayPlace > 7)
+         props.closeTimer()
        }
-
+ return () => clearInterval(interval);
     }, [isActive, remainingSecs])
    return (
       <View style={ styles.timerContainer }>
