@@ -16,7 +16,7 @@ export default function Carbon(props) {
     if (!mounted.current) {
       mounted.current = true;
     } else {
-      props.updateMaxTime(parseInt(minutes)*60 + parseInt(seconds));
+      props.getSecondsForTimer(parseInt(minutes)*60 + parseInt(seconds));
     }
   });
 
@@ -42,14 +42,19 @@ export default function Carbon(props) {
     const holdMins = secToMin(holdTime)[0];
     const holdSecs = addZero(secToMin(holdTime)[1]);
     const holdTimeArray = [];
+    const holdTimesInSec = [];
 
     for (let i = 0; i < 8; i++) {
+      holdTimesInSec.push(holdMins*60+holdSecs);
+
       holdTimeArray.push(
         <Text key={i} style={styles.tableText}>
           {holdMins}:{holdSecs}
         </Text>
       );
     }
+
+    props.getSecondsForTimer(holdTimesInSec);
 
     return holdTimeArray;
   };
